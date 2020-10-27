@@ -1,0 +1,10 @@
+@import "/src/styles/theme.scss";
+
+#title-bar{
+    background-color:$SECONDARY_COLOR;
+}
+
+#user-name{
+    color: aqua;
+    float: right;
+}
