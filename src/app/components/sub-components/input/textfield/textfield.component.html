@@ -1,0 +1,7 @@
+<!-- <input [style.height]="height" class="form-control" type="text" name="text-input" id="tf-input"> -->
+<div class="input-group" *ngIf="type=='SEARCH'">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><mat-icon>search</mat-icon></span>
+    </div>
+    <input [(ngModel)]="inputText" (change)="emitText($event)" type="text" class="form-control" placeholder="Phone-number" aria-label="Username" aria-describedby="basic-addon1">
+</div>

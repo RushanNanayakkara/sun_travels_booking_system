@@ -1,10 +1,41 @@
 @import "/src/styles/theme.scss";
 
 #title-bar{
-    background-color:$SECONDARY_COLOR;
+    background-color:$BASE_COLOR;
+    width: 100%;
+    height:$TITLE_BAR_HEIGHT;
+}
+
+#title{
+    color: black;
+    font-size: x-large;
+}
+
+#label-account{
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: gray;
+}
+
+#label-customer{
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: default;
+    color: gray;
 }
 
 #user-name{
     color: aqua;
     float: right;
+}
+
+#tfCustomerSearch{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+::ng-deep.mat-menu-panel {
+    max-width: none !important;
+    width: 200px !important;
 }
