@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/model/data-object/Customer';
-import { User } from 'src/app/model/data-object/User';
-import { CustomerService } from 'src/app/service/customer/customer.service';
-import { UserService } from 'src/app/service/user/user.service';
+import { Customer } from 'src/app/shared/models/data-object/Customer';
+import { User } from 'src/app/shared/models/data-object/User';
+import { CustomerService } from 'src/app/core/customer/customer.service';
+import { UserService } from 'src/app/core/user/user.service';
 
 @Component({
   selector: 'app-title-bar',
