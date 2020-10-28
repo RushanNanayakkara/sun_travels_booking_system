@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TextfieldComponent } from './inputs/textfield/textfield.component';
+import { SideNavComponent } from "./side-nav/side-nav.component";
+import { TitleBarComponent } from "./title-bar/title-bar.component";
 
 import { MatTableModule } from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -12,9 +14,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 const sharedComponents =[
-  TextfieldComponent
+  TextfieldComponent,
+  SideNavComponent,
+  TitleBarComponent
 ]
 
 const nativeModules = [
@@ -34,7 +41,7 @@ const externalModules = [
 ]
 
 @NgModule({
-  declarations: [...sharedComponents],
+  declarations: [...sharedComponents, UnauthorizedComponent, PageNotFoundComponent, SignInComponent],
   imports: [...nativeModules, ...externalModules],
   exports:[...nativeModules, ...externalModules ,...sharedComponents]
 })

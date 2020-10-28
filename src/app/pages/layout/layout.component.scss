@@ -1,0 +1,13 @@
+@import "/src/styles/theme.scss";
+
+#body-content{
+  height: $BODY_HEIGHT;
+  margin: 0ch;
+  width: 100vw;
+  border: 0ch;
+  background-color: blanchedalmond;
+}
+
+.mat-divider {
+  border-top-color: rgba(0, 0, 0, 0.12);
+}
