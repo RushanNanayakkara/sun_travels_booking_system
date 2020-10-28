@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { TextfieldComponent } from './inputs/textfield/textfield.component';
 import { SideNavComponent } from "./side-nav/side-nav.component";
@@ -14,18 +15,29 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const sharedComponents =[
   TextfieldComponent,
   SideNavComponent,
-  TitleBarComponent
+  TitleBarComponent,
+  UnauthorizedComponent, 
+  PageNotFoundComponent, 
+  SignInComponent
 ]
 
 const nativeModules = [
-  CommonModule
+  CommonModule,
+  RouterModule,
+  ReactiveFormsModule
 ]
 
 const externalModules = [
@@ -37,11 +49,15 @@ const externalModules = [
   MatFormFieldModule,
   MatExpansionModule,
   MatDividerModule,
-  MatListModule
+  MatListModule,
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatSnackBarModule
 ]
 
 @NgModule({
-  declarations: [...sharedComponents, UnauthorizedComponent, PageNotFoundComponent, SignInComponent],
+  declarations: [...sharedComponents],
   imports: [...nativeModules, ...externalModules],
   exports:[...nativeModules, ...externalModules ,...sharedComponents]
 })

@@ -2,13 +2,20 @@
   <mat-drawer id="side-nav" mode="side" opened>
     <mat-nav-list>
       <!-- EMPLOYEE HOME -->
-      <a mat-list-item routerLink="#" class="pl-2">
+      <a *ngIf="activeUserType===0" mat-list-item routerLink='/search/room' class="pl-2">
+        <mat-icon class="mr-3"> search </mat-icon>
+        Search
+      </a>
+
+      <!-- ADMIN HOME -->
+      <a *ngIf="activeUserType===1" mat-list-item routerLink='/search/admin' class="pl-2">
         <mat-icon class="mr-3"> search </mat-icon>
         Search
       </a>
 
       <!-- RESERVATION -->
       <mat-expansion-panel
+        *ngIf="activeUserType===0"
         class="mat-elevation-z0"
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
@@ -20,11 +27,11 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list dense>
-          <a mat-list-item routerLink="#" dense>
+          <a mat-list-item routerLink="/reservation/create" dense>
             <mat-icon class="mr-2"> add_box </mat-icon>
             Add new
           </a>
-          <a mat-list-item routerLink="#" dense>
+          <a mat-list-item routerLink="/reservation/view" dense>
             <mat-icon class="mr-2"> update </mat-icon>
             Update
           </a>
@@ -32,19 +39,14 @@
       </mat-expansion-panel>
 
       <!-- ACTIVITY-LOG -->
-      <a mat-list-item routerLink="#">
+      <a *ngIf="activeUserType===0" mat-list-item routerLink="/activity">
         <mat-icon class="mr-3"> timeline </mat-icon>
         <span> Activity Log </span>
       </a>
 
-      <!-- ADMIN HOME -->
-      <a mat-list-item routerLink="#" class="pl-2">
-        <mat-icon class="mr-3"> search </mat-icon>
-        Search
-      </a>
-
-      <!-- EMPLOYEE-ACCOUNT -->
+      <!-- EMPLOYEE-ACCOUNTS -->
       <mat-expansion-panel
+        *ngIf="activeUserType===1"
         class="mat-elevation-z0"
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
@@ -56,11 +58,11 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list dense>
-          <a mat-list-item routerLink="#" dense>
+          <a mat-list-item routerLink="/employee/create" dense>
             <mat-icon class="mr-2"> add_box </mat-icon>
             Add new
           </a>
-          <a mat-list-item routerLink="#" dense>
+          <a mat-list-item routerLink="/employee/view" dense>
             <mat-icon class="mr-2"> update </mat-icon>
             Update
           </a>
@@ -69,6 +71,7 @@
 
       <!-- HOTEL -->
       <mat-expansion-panel
+        *ngIf="activeUserType===1"
         class="mat-elevation-z0"
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
@@ -80,11 +83,11 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list dense>
-          <a mat-list-item routerLink="#" dense>
+          <a mat-list-item routerLink="/hotel/create" dense>
             <mat-icon class="mr-2"> add_box </mat-icon>
             Add new
           </a>
-          <a mat-list-item routerLink="#" dense
+          <a mat-list-item routerLink="/hotel/view" dense
             ><mat-icon class="mr-2">update</mat-icon>Update</a
           >
         </mat-nav-list>
@@ -92,6 +95,7 @@
 
       <!-- CONTRACT -->
       <mat-expansion-panel
+        *ngIf="activeUserType===1"
         class="mat-elevation-z0"
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
@@ -102,23 +106,23 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list dense>
-          <a mat-list-item routerLink="#" dense
+          <a mat-list-item routerLink="/contract/create" dense
             ><mat-icon class="mr-2">add_box</mat-icon>Add new</a
           >
-          <a mat-list-item routerLink="#" dense
+          <a mat-list-item routerLink="/contract/view" dense
             ><mat-icon class="mr-2">update</mat-icon>Update</a
           >
         </mat-nav-list>
       </mat-expansion-panel>
 
       <!-- ACCOUNT -->
-      <a mat-list-item routerLink="#" class="pl-2"
+      <a mat-list-item routerLink="/account" class="pl-2"
         ><mat-icon class="mr-3">settings</mat-icon><span>Account</span></a
       >
     </mat-nav-list>
-    <mat-nav-list id="logout-nav-item">
+    <mat-nav-list id="logout-nav-item" (click)="signOut()">
       <!-- LOGOUT -->
-      <a mat-list-item routerLink="#" class="pl-2 mt-auto mb-0"
+      <a mat-list-item class="pl-2 mt-auto mb-0"
         ><mat-icon class="mr-3">exit_to_app</mat-icon><span>Logout</span></a
       >
     </mat-nav-list>

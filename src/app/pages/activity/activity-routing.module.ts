@@ -5,10 +5,6 @@ import { ActivitiesComponent } from './activities/activities.component';
 const routes: Routes = [
   {
     path:"",
-    redirectTo:"all"
-  },
-  {
-    path:"view",
     component:ActivitiesComponent
   }
 ];

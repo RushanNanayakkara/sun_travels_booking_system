@@ -1,1 +1,45 @@
-<p>sign-in works!</p>
+<mat-card>
+    <mat-card-content>
+        <div class="header">
+            <h1 class="font-weight-bold">
+                Sun Travels Reservation
+            </h1>
+            <h2 class="text-secondary">
+                Login
+            </h2>
+        </div>
+        <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+            <div class="email-input">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>
+                        Email
+                    </mat-label>
+                    <input formControlName="email" matInput required/>
+                    <mat-error *ngIf="loginForm.get('email').errors?.required">
+                        Required email address
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <span class="aLink">
+                    Forgot Password?
+                </span>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>
+                        Password
+                    </mat-label>
+                    <input formControlName="password" matInput [type]="hide? 'password': 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.area-label]="'Hide Password'" [attr.area-pressed]="hide" >
+                        <mat-icon>
+                            {{ hide? 'visibility_off': 'visibility' }}
+                        </mat-icon>
+                    </button>
+                    <mat-error *ngIf="loginForm.get('password').errors?.required">
+                        Required password
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <button class="btn btn-primary col-5" color="primary">Login</button>
+        </form>
+    </mat-card-content>
+</mat-card>

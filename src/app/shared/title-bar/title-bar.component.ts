@@ -3,6 +3,7 @@ import { Customer } from 'src/app/shared/models/data-object/Customer';
 import { User } from 'src/app/shared/models/data-object/User';
 import { CustomerService } from 'src/app/core/customer/customer.service';
 import { UserService } from 'src/app/core/user/user.service';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-title-bar',
@@ -16,13 +17,18 @@ export class TitleBarComponent implements OnInit {
   telNumber:String = null;
 
   constructor(
-    private userService: UserService,
+    private authService: AuthenticationService,
     private customerService: CustomerService
     ) { }
 
   ngOnInit(): void {
-    this.userService.getLoggedInUser().subscribe(user=>this.loggedInUser = user);
-    let defaultCustomer = new Customer();
+    this.loggedInUser = this.authService.getLoggedInUser();
+    let defaultCustomer:Customer = {
+      customerId: null,
+      name: "No customer selected",
+      email: "",
+      contactNumber:""
+    };
     defaultCustomer.name = "No Customer Selected";
     this.activeCustomer = defaultCustomer;
   }
@@ -34,5 +40,10 @@ export class TitleBarComponent implements OnInit {
   onSearchTextUpdate(event:String){
     this.customerService.getCustomer(event).subscribe(customer=>this.activeCustomer=customer);
   }
+
+  signOut(){
+    this.authService.signOut();
+  }
+
 
 }

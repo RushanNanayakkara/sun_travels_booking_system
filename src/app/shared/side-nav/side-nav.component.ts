@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class SideNavComponent implements OnInit {
   
   panelOpenState = false;
+  activeUserType = null;
   
-  constructor() { }
+  constructor(
+    private authService: AuthenticationService
+    ) { }
 
   ngOnInit(): void {
+    this.activeUserType = this.authService.getLoggedInUser().tenantId;
+  }
+
+  signOut(){
+    this.authService.signOut();
   }
 
 }

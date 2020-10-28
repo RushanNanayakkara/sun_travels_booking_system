@@ -1,4 +1,4 @@
-export class User{
+export interface User{
     userId: Number;
     employeeId: String;
     firstName : String;
