@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { SearchRoomRoutingModule } from './search-room-routing.module';
 import { SearchRoomResultComponent } from './search-room-result/search-room-result.component';
 import { SearchRoomSearchComponent } from './search-room-search/search-room-search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [SearchRoomResultComponent, SearchRoomSearchComponent],
   imports: [
     CommonModule,
-    SearchRoomRoutingModule
+    SearchRoomRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class SearchRoomModule { }
