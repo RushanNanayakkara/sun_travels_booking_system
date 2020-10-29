@@ -1,1 +1,36 @@
-<p>search-room-result works!</p>
+<form (ngSubmit)="search()"  name="searchForm" [formGroup]="searchForm" class="mt-2">
+    <div class="col-11 ml-auto mr-auto">
+        <input formControlName="destination" #destination id="tf-search" type="text" class="form-control col-3 ml-5 float-left" placeholder="destination">
+        <input formControlName="checkInDate" #checkInDate type="date" name="checkInDate" id="df-check-in-date" class="col-2 form-control float-left">
+        <input formControlName="checkOutDate" #checkOutDate type="date" name="checkOutDate" id="df-check-out-date" class="col-2 form-control float-left">
+        <input formControlName="numberOfAdults" #adults type="number" name="adultsCount" id="nf-adults-count" class="form-control col-1 float-left" placeholder="Adults">
+        <input formControlName="numberOfRooms" #rooms type="number" name="roomsCount" id="nf-rooms-count" class="form-control col-1 float-left" placeholder="Rooms">
+        <button id="search-button" class="btn btn-primary col-2 ml-2" >
+            Search
+        </button>
+    </div>
+</form>
+<mat-expansion-panel (opened)="filterPanelOpenState = true"
+                   (closed)="filterPanelOpenState = false"
+                    class="col-11 ml-auto mr-auto mt-2">
+<mat-expansion-panel-header>
+  <mat-panel-title class="text-secondary">
+    Add Filter
+  </mat-panel-title>
+</mat-expansion-panel-header>
+<div>
+    <input [(ngModel)]="keyLocationFilterInput" type="text" class="form-control col-3 ml-5 float-left" placeholder="Key Location">
+    <input [(ngModel)]="hotelNameInput" type="text" class="form-control col-3 ml-3 float-left" placeholder="Hotel">
+    <input [(ngModel)]="minPrice" name="minPrice" id="nf-adults-count" class="form-control col-1 float-left ml-3" placeholder="Min Price">
+    <input [(ngModel)]="maxPrice" name="maxPrice" id="nf-adults-count" class="form-control col-1 float-left ml-3" placeholder="Max Price">
+    <button type="button" id="filter-button" class="btn btn-secondary col-2 ml-2"  (click)="addFilters()">
+        Add Filter
+    </button>
+</div>
+<div>
+    <span *ngFor="let filterOption of filterOptions" class="badge badge-secondary font-weight-light">{{filterOption}}</span>
+</div>
+</mat-expansion-panel>
+<mat-card id="search-result-container" class="mt-2 ml-5 mr-5">
+    <app-room-search-record *ngFor="let searchResult of searchResults" [record]="searchResult"></app-room-search-record>
+</mat-card>

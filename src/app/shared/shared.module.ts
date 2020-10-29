@@ -24,6 +24,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RoomSearchRecordComponent } from './room-search-record/room-search-record.component';
 
 const sharedComponents =[
   TextfieldComponent,
@@ -31,7 +32,8 @@ const sharedComponents =[
   TitleBarComponent,
   UnauthorizedComponent, 
   PageNotFoundComponent, 
-  SignInComponent
+  SignInComponent,
+  RoomSearchRecordComponent
 ]
 
 const nativeModules = [

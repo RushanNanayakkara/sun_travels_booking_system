@@ -1,0 +1,64 @@
+#result-container{
+    padding-left:35px;
+    padding-top: 20px;
+    padding-bottom: 20px ;
+    height: 300px;
+    width: 100%;
+    background-color: rgb(226, 226, 226);
+}
+
+#left-panel{
+    height: 100%;
+    float: left;
+    width: 85%;
+}
+
+#right-panel{
+    height: 100%;
+    float: left;
+    width: 15%;
+}
+
+#hotel-name{
+    font-size: xx-large;
+    font-weight: 500;
+}
+
+.addressBox{
+    border: 2px solid black;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 4px;
+    font-weight: 500;
+}
+
+.bottom-value{
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 4px;
+    font-weight: 500;
+}
+
+#room-type-container{
+    height: 150px;
+}
+
+#room-type-header{
+    margin-top: 20px;
+    font-size: x-large;
+    font-weight: 500;
+}
+
+#room-type-body{
+    padding-top: 20px;
+    padding-left: 50px;
+    font-weight: 400;
+}
+
+#add-button{
+    background-color: #0CA789; 
+    font-weight: 500 ;
+}

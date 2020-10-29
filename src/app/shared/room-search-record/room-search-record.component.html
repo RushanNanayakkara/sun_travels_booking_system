@@ -1,0 +1,41 @@
+<div id="result-container" class="mt-4">
+    <div id="left-panel">
+        <div id="hotel-name" class="">
+            {{record.hotel.name}}
+        </div>
+        <div>
+            <div class="addressBox">{{record.hotel.streetAddress}}</div>
+            <div class="addressBox">{{record.hotel.addressLine2}}</div>
+            <div class="addressBox">{{record.hotel.city}}</div>
+            <div class="addressBox">{{record.hotel.stateOrProvinceOrRegion}}</div>
+            <div class="addressBox">{{record.hotel.country}}</div>
+        </div>
+        <div id="room-type-container">
+            <div id="room-type-header">
+                {{record.roomType.name}}
+            </div>
+            <div id="room-type-body">
+                {{record.roomType?.description}}
+            </div>
+        </div>
+        <div>
+            <div class="bottom-value">$total: {{record.totalCost}}</div>
+            <div class="bottom-value">$pernight: {{record.subContract.perPersonPerNightPrice}}</div>
+            <div class="bottom-value">available: {{record.availableCount}}</div>
+            <div class="bottom-value">Max adults allowed: {{record.subContract.maxAdultsAllowed}}</div>
+        </div>
+    </div>
+    <div id="right-panel">
+        <div class="font-weight-bold text-right mr-4" [ngClass]="{'text-danger': record.availableCount===0 ,'text-dark':record.availableCount>0}">
+            <h2>Available</h2>
+        </div>
+        <div class="text-danger">
+            <small class="font-weight-bold">Closest available : 2020/10/12(dummy)</small>
+        </div>
+        <div>
+            <button id="add-button" class="btn btn-lg col-11 mt-5">
+                Add reservation
+            </button>
+        </div>
+    </div>
+</div>  
