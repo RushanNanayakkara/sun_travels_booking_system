@@ -25,4 +25,8 @@ export interface SearchResponse{
         };        
         totalCost: Number;
         availableCount: Number;
+        requestedRoomCount:Number;
+        checkInDate:Date,
+        checkOutDate:Date,
+        requestedAdultsCount:Number
 }

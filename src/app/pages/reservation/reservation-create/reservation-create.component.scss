@@ -1,0 +1,44 @@
+#heading{
+    font-size: 35px;
+    margin-top: 25px;
+    margin-left: 15px;
+    font-weight: 500   
+}
+
+.input-label-container{
+    display: flex;
+    flex-direction:row;
+    align-content: center;
+    margin-right: 0px;
+}
+
+.input-label{
+    line-height: 100%;
+    width: 200px;
+    text-align: right;
+    align-self: center;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.input-pair{
+    margin-top: 15px;
+}
+
+#button-panel{
+    button{
+        display: block;
+        margin-right: 5px;
+        margin-left: auto;
+        margin-top: 15px;
+        color: black;
+        font-weight: 500;
+        width: 200px;
+    }
+}
+
+.form-warning{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+}

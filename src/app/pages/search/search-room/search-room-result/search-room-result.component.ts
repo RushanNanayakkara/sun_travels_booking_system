@@ -68,7 +68,6 @@ export class SearchRoomResultComponent implements OnInit {
         this.searchService.searchWithoutFilter(this.searchForm.value)
         .subscribe(response=>{
           this.searchResults =response;
-          this.router.navigate(['/search/room/result'],{state:{response}});
         })
       );
   }

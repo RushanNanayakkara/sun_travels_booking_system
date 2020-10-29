@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BASE_URL } from 'src/app/constants/url';
 import { SearchRequest } from 'src/app/shared/models/requests/searchRequest';
 import { SearchResponse } from 'src/app/shared/models/responses/SearchResponse';
 
@@ -8,8 +9,8 @@ import { SearchResponse } from 'src/app/shared/models/responses/SearchResponse';
 })
 export class SearchService {
   
+  searchUrl:string = "/api/v1/search/room/available"
   
-
   constructor(private http: HttpClient) { }
 
   searchWithoutFilter(req:Partial<SearchRequest>){
@@ -17,17 +18,13 @@ export class SearchService {
     req.hotelNameList = [];
     req.maxPrice = null;
     req.minPrice = null;
-
-    let apiUrl: string = "https://run.mocky.io/v3/5a57208d-71f0-40ff-99e7-e9a7d44d7729";
     
-    return this.http.post<SearchResponse[]>(apiUrl,req,{observe:'body',responseType:'json'})
+    return this.http.post<SearchResponse[]>(BASE_URL + this.searchUrl,req,{observe:'body',responseType:'json'})
   }
 
   searchWithFilter(req:Partial<SearchRequest>){
-
-    let apiUrl: string = "https://run.mocky.io/v3/5a57208d-71f0-40ff-99e7-e9a7d44d7729";
     
-    return this.http.post<SearchResponse[]>(apiUrl,req,{observe:'body',responseType:'json'})
+    return this.http.post<SearchResponse[]>( BASE_URL + this.searchUrl,req,{observe:'body',responseType:'json'})
   }
   
 }

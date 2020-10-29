@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchResponse } from '../models/responses/SearchResponse';
 
 @Component({
@@ -10,7 +11,7 @@ export class RoomSearchRecordComponent implements OnInit {
 
   @Input() record:SearchResponse;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.record.roomType = {
@@ -18,6 +19,10 @@ export class RoomSearchRecordComponent implements OnInit {
     description:`this is a dummy description.this is a dummy description.this is a dummy description.this is a dummy description.this is a dummy 
              description.this is a dummy description.this is a dummy description.this is a dummy description.`
     }
+  }
+
+  addReservation(){
+    this.router.navigate(['/reservation/create'],{state:{record:this.record}});
   }
 
 }

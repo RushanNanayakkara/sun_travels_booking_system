@@ -54,6 +54,7 @@ export class SignInComponent implements OnInit {
     this.isBusy = true;
     this.subscriptions.push(
       this.authService.signIn(this.loginForm.value).subscribe((response:TokenResponse)=>{
+        console.log(response);
         this.authService.setJwt(String(response.token));
         this.authService.setLoggedInUser(response.user);
         if(response.user.tenantId==1) this.router.navigateByUrl('/search/admin');
@@ -66,6 +67,7 @@ export class SignInComponent implements OnInit {
         });
       },
       (err : HttpErrorResponse)=>{
+        console.log(err);
         this.isWrongCredentials = true;
         this._snackBar.open(err.error.message,"close",{
           duration:4000,

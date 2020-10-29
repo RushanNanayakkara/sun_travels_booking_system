@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  employeeAuth:string = "https://run.mocky.io/v3/61b4d206-4910-4c36-a2c7-73b80a0aa6e6";
-  adminAuth:string = "https://run.mocky.io/v3/f2de0866-d65c-4293-ae4e-eb7944e13626";
+  authUrl:string = "/api/v1/auth/authenticate";
 
   constructor(
     private http: HttpClient,
@@ -19,7 +18,7 @@ export class AuthenticationService {
     ) { }
 
   signIn({email,password}){
-      return this.http.post<TokenResponse>(this.employeeAuth, {email,password}, {observe:'body',responseType:'json'});
+      return this.http.post<TokenResponse>(BASE_URL+this.authUrl, {email,password}, {observe:'body',responseType:'json'});
   }
 
   getJwt():string{

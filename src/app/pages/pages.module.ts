@@ -5,6 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from "../shared/shared.module";
 
 import { LayoutComponent  } from "./layout/layout.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,9 @@ import { LayoutComponent  } from "./layout/layout.component";
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 
