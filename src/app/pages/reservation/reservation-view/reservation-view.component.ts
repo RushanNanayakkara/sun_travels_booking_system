@@ -89,7 +89,7 @@ export class ReservationViewComponent implements OnInit,OnDestroy {
   confirmAndCancel(){
     const dialogRef = this.dialog.open(ConfirmDialogComponent,{
       data:{
-        action:"Hello world",
+        action:"cancel",
         trueButtonText:"Confirm",
         falseButtonText:"Cancel",
         warningMessage:"This action is not reversable!"

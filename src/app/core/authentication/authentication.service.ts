@@ -42,5 +42,9 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     this.router.navigate(["/sign-in"],{replaceUrl:true});
   }
+  
+  async validateToken(token:string){
+    return this.http.get(BASE_URL+"/api/v1/auth/validate-token").toPromise();
+  }
 
 }

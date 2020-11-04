@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,7 +12,8 @@ export class AuthGuardGuard implements CanActivate {
 
   constructor(
     private authService:AuthenticationService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
     ){}
 
   canActivate(
@@ -19,7 +21,7 @@ export class AuthGuardGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user: User = this.authService.getLoggedInUser();
     if(user!=null){
-      return true
+      return true;  
     }else{
       this.router.navigate(['/sign-in']);
     }
