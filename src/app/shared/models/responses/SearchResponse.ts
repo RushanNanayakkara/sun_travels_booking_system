@@ -1,5 +1,3 @@
-// todo: add the room type
-
 export interface SearchResponse{
         hotel: {
             hotelId: Number;
@@ -13,7 +11,11 @@ export interface SearchResponse{
             country: string;
             status: true;
         },
-        roomType: any; 
+        roomType: {
+            roomTypeId:Number;
+            name:string;
+            description:string;
+        }; 
         subContract: {
             subContractId: Number;
             contractId: Number;

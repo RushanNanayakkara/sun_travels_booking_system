@@ -9,7 +9,7 @@ const routes: Routes = [
     component:SearchRoomSearchComponent
   },
   {
-    path:"result",
+    path:"filter",
     component:SearchRoomResultComponent
   }
 ];

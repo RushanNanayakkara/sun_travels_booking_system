@@ -1,1 +1,133 @@
-<p>account-view works!</p>
+<div id="heading" class="text-secondary d-block">
+    Employee Account
+</div>
+<button class="btn btn-danger mt-4 ml-3 col-1" (click)="goBack()">
+    Back
+</button>
+<div class="container sun-travel-form-section mt-5 ml-auto mr-auto">
+    <form class="row"  (ngSubmit)="updateAccount()" name="account-form" [formGroup]="accountForm">
+        <div class="col-10 " id="form-section">
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-3"
+                    placeholder="Employee id"
+                    title="Employee Id"
+                    type="text"
+                    errorMessage="Invalid Employee ID!"
+                    [control]="accountForm.controls.employeeId"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-5" 
+                    placeholder="First Name"
+                    title="First Name"
+                    type="text"
+                    errorMessage="Invalid First Name!"
+                    [control]="accountForm.controls.firstName"
+                    prependMatIcon="text_fields"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+                <div class="col-2"></div>
+                <sun-travel-input-text
+                    class="col-5" 
+                    placeholder="Last Name"
+                    title="Last Name"
+                    type="text"
+                    errorMessage="Invalid Last Name!"
+                    [control]="accountForm.controls.lastName"
+                    prependMatIcon="text_fields"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-7" 
+                    placeholder="Email"
+                    title="Email"
+                    type="email"
+                    errorMessage="Invalid Email!"
+                    [control]="accountForm.controls.email"
+                    prependMatIcon="text_fields"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+                <sun-travel-input-select
+                    class="col-4" 
+                    placeholder="Status"
+                    title="Status"
+                    type="text"
+                    errorMessage="Invalid Status!"
+                    [control]="accountForm.controls.status"
+                    prependMatIcon="check_box"
+                    [isDisabled]="true"
+                    [options]="[
+                        {key:'ACTIVE',value:true},
+                        {key:'DEACTIVATED',value:false}
+                    ]"
+                >
+                </sun-travel-input-select>
+            </div>
+        </div>
+        <div class="col-2" id="button-section">
+            <button class="btn col-12 primary-background text-light d-block mt-1">
+                Update
+            </button>
+        </div>
+    </form>
+</div>
+<div class="container sun-travel-form-section mt-1 ml-auto mr-auto">
+    <h3 class="text-secondary bold">Change Password</h3>
+    <div class="row">
+        <div class="col-10">
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-5"
+                    placeholder="Enter Old Password"
+                    title="Old password"
+                    type="password"
+                    errorMessage="Invalid Password!"
+                    [control]="accountForm.controls.password"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-5"
+                    placeholder="Enter Old Password"
+                    title="Old password"
+                    type="password"
+                    errorMessage="Invalid Password!"
+                    [control]="accountForm.controls.newPassword"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+                <div class="col-2"></div>
+                <sun-travel-input-text
+                    class="col-5"
+                    placeholder="Enter Old Password"
+                    title="Old password"
+                    type="password"
+                    errorMessage="Invalid Password!"
+                    [control]="accountForm.controls.repeatPassword"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+            </div>
+        </div>
+        <div class="col-2" id="button-section">
+            <button type="button" (click)="updatePassword()" class="btn col-12 btn-secondary secondary-background text-light d-block mt-1">
+                Update Password
+            </button>
+        </div>
+    </div>
+</div>

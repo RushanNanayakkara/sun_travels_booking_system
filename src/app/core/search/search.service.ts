@@ -18,13 +18,11 @@ export class SearchService {
     req.hotelNameList = [];
     req.maxPrice = null;
     req.minPrice = null;
-    
-    return this.http.post<SearchResponse[]>(BASE_URL + this.searchUrl,req,{observe:'body',responseType:'json'})
+    return this.http.post<SearchResponse[]>(BASE_URL + this.searchUrl,req,{observe:'body',responseType:'json'});
   }
 
   searchWithFilter(req:Partial<SearchRequest>){
-    
-    return this.http.post<SearchResponse[]>( BASE_URL + this.searchUrl,req,{observe:'body',responseType:'json'})
+    return this.http.post<SearchResponse[]>( BASE_URL + this.searchUrl,req,{observe:'body',responseType:'json'});
   }
   
 }

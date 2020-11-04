@@ -1,2 +1,50 @@
-<p>hotel works!</p>
-dsafupajdfskla;jfkldj;afjklajd;fjaklfj;ajlfkjh;adhfjla;hfjklahf;opuhaewiol;uhf qae;chflbq;hb;hqoi;lhe;c fbhqbchpdfhbaou;hefaw;fh;hflah;
+<div id="heading" class="text-secondary d-block ml-4">
+    Hotel
+</div>
+<button class="btn btn-danger mt-3 ml-3 col-1" (click)="goBack()">
+    return Home
+</button>
+{{reservationList|json}}
+<div id="summary-body" class="container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef> Country </th>
+          <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef> City </th>
+          <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element" class="bold" [ngClass]="{'text-success':element.status,'text-danger':!element.status}" > {{element.status?'ACTIVE':'INACTIVE'}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+              <a [routerLink]="['/hotel/view']" [queryParams]="{id:element.hotelId}">
+                <button class="btn btn-warning">
+                  Update
+                </button>
+              </a>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>

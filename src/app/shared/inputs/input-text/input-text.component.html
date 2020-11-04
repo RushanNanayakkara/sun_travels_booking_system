@@ -1,0 +1,28 @@
+<div class="p-1 mt-1 mb-1">
+    <label 
+        id="input-title" 
+        for="input-container" 
+        class="sun-travel-input-label"
+        *ngIf="title!=null">
+        {{title}}
+    </label>
+    <div id="input-container" class="input-group">
+        <div *ngIf="prependText!=null || prependMatIcon!=null" class="input-group-prepend">
+            <span class="input-group-text">
+                <span *ngIf="prependText!=null">{{prependText}}</span>
+                <mat-icon *ngIf="prependMatIcon!=null" aria-hidden="false">{{prependMatIcon}}</mat-icon>
+            </span>
+        </div>
+        <input 
+            class="form-control col-12 d-block" 
+            [type]="type"
+            placeholder={{placeholder}}
+            [formControl] = "control"
+            [ngClass] = "{'is-invalid':getStatus()}"
+            [attr.disabled]="isDisabled ? '' : null"
+        >
+        <div class="invalid-tooltip">
+            {{errorMessage}}
+        </div>
+    </div>
+</div>

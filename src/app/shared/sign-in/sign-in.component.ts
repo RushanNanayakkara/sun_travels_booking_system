@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { TokenResponse } from '../models/responses/TokenResponse';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit,OnDestroy {
 
   loginForm:FormGroup;
   hide = true;
@@ -54,8 +54,7 @@ export class SignInComponent implements OnInit {
     this.isBusy = true;
     this.subscriptions.push(
       this.authService.signIn(this.loginForm.value).subscribe((response:TokenResponse)=>{
-        console.log(response);
-        this.authService.setJwt(String(response.token));
+        this.authService.setToken(String(response.token));
         this.authService.setLoggedInUser(response.user);
         if(response.user.tenantId==1) this.router.navigateByUrl('/search/admin');
         else this.router.navigateByUrl('/search/room');

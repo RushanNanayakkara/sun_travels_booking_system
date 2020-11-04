@@ -1,7 +1,7 @@
-import { reservation } from '../data-object/Reservation';
+import { Reservation } from '../data-object/Reservation';
 
 export interface ReservationRequst{
-    reservation: Partial<reservation>;
+    reservation: Partial<Reservation>;
     customerId: Number,
     customerName:string,
     customerTelNumber:string,

@@ -27,7 +27,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list dense>
-          <a mat-list-item routerLink="/reservation/create" dense>
+          <a mat-list-item routerLink="/search/room/filter" dense>
             <mat-icon class="mr-2"> add_box </mat-icon>
             Add new
           </a>
@@ -83,13 +83,18 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list dense>
+          <a mat-list-item routerLink="/hotel" dense>
+            <mat-icon class="mr-2"> format_list_bulleted </mat-icon>
+            All Hotels
+          </a>
           <a mat-list-item routerLink="/hotel/create" dense>
             <mat-icon class="mr-2"> add_box </mat-icon>
             Add new
           </a>
-          <a mat-list-item routerLink="/hotel/view" dense
-            ><mat-icon class="mr-2">update</mat-icon>Update</a
-          >
+          <a mat-list-item routerLink="/hotel/view" dense>
+            <mat-icon class="mr-2">update</mat-icon>
+            Update
+          </a>
         </mat-nav-list>
       </mat-expansion-panel>
 

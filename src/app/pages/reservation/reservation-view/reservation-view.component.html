@@ -1,1 +1,168 @@
-<p>reservation-view works!</p>
+<div id="heading" class="text-secondary d-block">
+    Reservation
+</div>
+<button class="btn btn-danger mt-4 ml-3 col-1" (click)="goBack()">
+    Back
+</button>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="input-group col-4 mr-1 ml-auto">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><mat-icon>search</mat-icon></span>
+            </div>
+            <input #searchUuidText type="text" placeholder="Search by UUID" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <button  id="search-button" (click)="searchUUID(searchUuidText.value)" class="btn btn-dark ml-2">
+            Search
+        </button>
+    </div>
+</div>
+<div class="container-fluid mt-5 sun-travel-form-section">
+    <form class="row" (ngSubmit)="update()"  name="reservation-form" [formGroup]="reservationForm">
+        <div class="col-10">
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-2" 
+                    placeholder="Reservation id"
+                    title="Reservation Id"
+                    type="number"
+                    errorMessage="Invalid reservationId!"
+                    [control]="reservationForm.controls.customerId"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+                <div class="col-1"></div>
+                <sun-travel-input-text
+                    class="col-2" 
+                    placeholder="CustomerId"
+                    title="Customer Id"
+                    type="number"
+                    errorMessage="Invalid customer Id!"
+                    [control]="reservationForm.controls.customerId"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+                <div class="col-1"></div>
+                <sun-travel-input-text
+                    class="col-2" 
+                    placeholder="Subcontract Id"
+                    title="Subcontract Id"
+                    type="number"
+                    errorMessage="Invalid Subcontract Id!"
+                    [control]="reservationForm.controls.subContractId"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-7" 
+                    placeholder="UUID"
+                    title="UUID"
+                    type="text"
+                    errorMessage="Invalid uuid!"
+                    [control]="reservationForm.controls.uuid"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-4" 
+                    placeholder="CheckInDate"
+                    title="Check In Date"
+                    type="date"
+                    errorMessage="Invalid date!"
+                    [control]="reservationForm.controls.checkInDate"
+                    prependMatIcon="calendar_today"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+                <div class="col-2"></div>
+                <sun-travel-input-text
+                    class="col-4" 
+                    placeholder="CheckOutDate"
+                    title="Check Out Date"
+                    type="date"
+                    errorMessage="Invalid date!"
+                    [control]="reservationForm.controls.checkOutDate"
+                    prependMatIcon="calendar_today"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-3" 
+                    placeholder="Num. of Rooms"
+                    title="Num. of Rooms"
+                    type="number"
+                    errorMessage="Invalid count!"
+                    [control]="reservationForm.controls.noOfRooms"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+                <sun-travel-input-text
+                    class="col-3" 
+                    placeholder="No of Adults"
+                    title="No. Of Adults"
+                    type="number"
+                    errorMessage="Invalid count!"
+                    [control]="reservationForm.controls.noOfAdults"
+                    prependMatIcon="person"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+                <sun-travel-input-text
+                    class="col-3" 
+                    placeholder="Status"
+                    title="Status"
+                    type="text"
+                    errorMessage="Invalid status!"
+                    [control]="reservationForm.controls.status"
+                    prependMatIcon="done_outline"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-4" 
+                    placeholder="Marked up price"
+                    title="Marked Up Price"
+                    type="number"
+                    errorMessage="Invalid price!"
+                    [control]="reservationForm.controls.markedUpPrice"
+                    prependMatIcon="attach_money"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+                <div class="col-2"></div>
+                <sun-travel-input-text
+                    class="col-4" 
+                    placeholder="Marked up price"
+                    title="Created By(Employee Id)"
+                    type="number"
+                    errorMessage="Invalid id!"
+                    [control]="reservationForm.controls.createdEmployeeId"
+                    prependMatIcon="person_outline"
+                    [isDisabled]="true"
+                >
+                </sun-travel-input-text>
+            </div>
+        </div>
+        <div class="col-2">
+                <button disabled class="btn col-11 primary-background text-light d-block mt-1">
+                    Update Reservation
+                </button>
+                <button type="button" (click)="confirmAndCancel()" class="btn col-11 btn-danger text-light d-block mt-2">
+                    Cancel Reservation
+                </button>
+        </div>
+    </form> 
+</div>

@@ -1,3 +1,5 @@
+@import "/src/styles/theme.scss";
+
 #heading{
     font-size: 35px;
     margin-top: 25px;
@@ -5,40 +7,11 @@
     font-weight: 500   
 }
 
-.input-label-container{
-    display: flex;
-    flex-direction:row;
-    align-content: center;
-    margin-right: 0px;
+#form-array-container{
+    max-height: 550px;
+    overflow: scroll;
 }
 
-.input-label{
-    line-height: 100%;
-    width: 200px;
-    text-align: right;
-    align-self: center;
-    font-weight: 500;
-    font-size: 15px;
-}
-
-.input-pair{
-    margin-top: 15px;
-}
-
-#button-panel{
-    button{
-        display: block;
-        margin-right: 5px;
-        margin-left: auto;
-        margin-top: 15px;
-        color: black;
-        font-weight: 500;
-        width: 200px;
-    }
-}
-
-.form-warning{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 10px;
+#form-array-container::-webkit-scrollbar {
+    display: none;
 }

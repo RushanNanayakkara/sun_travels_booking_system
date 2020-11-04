@@ -1,3 +1,4 @@
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -7,9 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TextfieldComponent implements OnInit {
 
-  @Input() width:Number;
-  @Input() height:Number;
   @Input() type: String;
+  @Input() placeholder:string;
   @Output() event = new EventEmitter<String>();
 
   inputText:String;
@@ -18,7 +18,6 @@ export class TextfieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.height,this.width)
   }
 
   emitText(event:Event):void{

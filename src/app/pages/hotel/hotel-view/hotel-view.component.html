@@ -1,1 +1,219 @@
-<p>hotel-view works!</p>
+<div id="heading" class="text-secondary d-block">
+    Update Hotel
+</div>
+<button class="btn btn-danger mt-4 ml-3 col-1" (click)="goBack()">
+    Back
+</button>
+<div class="container-fluid sun-travel-form-section mt-0 ml-auto mr-auto">
+    <form class="row"  (ngSubmit)="updateHotel()" name="hotel-detail-form" [formGroup]="hotelDetailForm">
+        <div class="col-10 " id="form-section" formGroupName="hotel">
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-5"
+                    placeholder="Hotel Name"
+                    title="Hotel Name"
+                    type="text"
+                    errorMessage="Invalid hotel name!"
+                    [control]="hotelDetailForm.get('hotel').get('name')"
+                    prependMatIcon="vpn_key"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+                <div class="col-1"></div>
+                <sun-travel-input-text
+                    class="col-6"
+                    placeholder="Hotel Email"
+                    title="Hotel Email"
+                    type="email"
+                    errorMessage="Invalid email!"
+                    [control]="hotelDetailForm.get('hotel').get('email')"
+                    prependMatIcon="email"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row"> 
+                <sun-travel-input-text
+                    class="col-6"
+                    placeholder="Street Address"
+                    title="Street Address"
+                    type="text"
+                    errorMessage="Invalid street address!"
+                    [control]="hotelDetailForm.get('hotel').get('streetAddress')"
+                    prependMatIcon="business"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+                <sun-travel-input-text
+                    class="col-6"
+                    placeholder="Address Line 2"
+                    title="Address Line 2"
+                    type="text"
+                    errorMessage="Invalid address line!"
+                    [control]="hotelDetailForm.get('hotel').get('addressLine2')"
+                    prependMatIcon="business"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-4"
+                    placeholder="city"
+                    title="city"
+                    type="text"
+                    errorMessage="Invalid street address!"
+                    [control]="hotelDetailForm.get('hotel').get('city')"
+                    prependMatIcon="business"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+                <sun-travel-input-text
+                    class="col-4"
+                    placeholder="State/Province/Region"
+                    title="State/ Province/ Region"
+                    type="text"
+                    errorMessage="Invalid stateOrProvinceOrRegion!"
+                    [control]="hotelDetailForm.get('hotel').get('stateOrProvinceOrRegion')"
+                    prependMatIcon="business"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+                <sun-travel-input-text
+                    class="col-4"
+                    placeholder="Postal Code"
+                    title="Postal Code"
+                    type="text"
+                    errorMessage="Invalid postal code!"
+                    [control]="hotelDetailForm.get('hotel').get('postalCode')"
+                    prependMatIcon="business"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+            </div>
+            <div class="row">
+                <sun-travel-input-text
+                    class="col-6"
+                    placeholder="Country"
+                    title="Country"
+                    type="text"
+                    errorMessage="Invalid Country!"
+                    [control]="hotelDetailForm.get('hotel').get('country')"
+                    prependMatIcon="business"
+                    [isDisabled]="false"
+                >
+                </sun-travel-input-text>
+            </div>
+        </div>
+        <div class="col-2" id="button-section">
+            <button class="btn col-12 primary-background text-light d-block mt-1">
+                Update Hotel
+            </button>
+        </div>
+    </form>
+</div>
+<div id="rooms-container"  name="hotel-detail-form" [formGroup]="addRoomForm">
+    <form class="container sun-travel-form-section mt-0 ml-auto mr-auto">
+        <h3 class="text-secondary bold">Add Existing Room Type</h3>
+        <div class="row">
+            <div class="col-10">
+                <div class="row">
+                    <sun-travel-input-text
+                        class="col-5"
+                        placeholder="Room type Id"
+                        title="Room Type Id"
+                        type="number"
+                        errorMessage="Invalid Room Type!"
+                        [control]="addRoomForm.get('id')"
+                        prependMatIcon="vpn_key"
+                        [isDisabled]="false"
+                    >
+                    </sun-travel-input-text>
+                </div>
+            </div>
+            <div class="col-2" id="button-section">
+                <button type="button" (click)="addExistingRoom()" class="btn col-12 btn-secondary secondary-background text-light d-block mt-1">
+                    Add Room Type
+                </button>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <h3 class="text-secondary bold">Add New Room Type</h3>
+        <div class="row">
+            <div class="col-10">
+                <div class="row">
+                    <sun-travel-input-text
+                        class="col-10"
+                        placeholder="Room type name"
+                        title="Room Type Name"
+                        type="text"
+                        errorMessage="Invalid Name!"
+                        [control]="addRoomForm.get('name')"
+                        prependMatIcon="text_fields"
+                        [isDisabled]="false"
+                    >
+                    </sun-travel-input-text>
+                </div>
+                <div class="row">
+                    <sun-travel-input-text-area
+                        class="col-12"
+                        placeholder = "Enter room description. Max 500 characters"
+                        errorMessage = "Invalid input"
+                        [control] = "addRoomForm.get('description')"
+                        title="Room type description"
+                        [isDisabled] = "false"
+                        [rowsInput] = "5"
+                    >
+                    </sun-travel-input-text-area>
+                </div>
+            </div>
+            <div class="col-2" id="button-section">
+                <button type="button" (click)="addNewRoom()" class="btn col-12 btn-secondary secondary-background text-light d-block mt-1">
+                    Add Room Type
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="container mb-4" *ngFor="let newRoomType of newRoomTypes; let i = index">
+        <div class="row">
+            <div class="col-10 bg-secondary text-light p-3">
+                <div class="row">
+                    <h3 class="col bold">
+                        Name : {{newRoomType.name}}
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Description : {{newRoomType.description}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-danger mt-4 rounded" (click)="removeNewRoom(i)">
+                    Remove
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-4" *ngFor="let roomId of existingRoomIdList; let i = index">
+        <div class="row">
+            <div class="col-10 bg-secondary text-light p-3">
+                <div class="row">
+                    <h3 class="col bold">
+                        Name : {{existingRoomList[roomId].name}}
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Description : {{existingRoomList[roomId].description}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-danger mt-4 rounded" (click)="removeExistingRoom(i,roomId)">
+                    Remove
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

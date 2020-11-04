@@ -5,5 +5,5 @@ export interface User{
     lastName : String;
     email: String;
     tenantId: Number;
-    status: true
+    status: Boolean;
 }

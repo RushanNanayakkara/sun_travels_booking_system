@@ -5,13 +5,49 @@
                     Search Availability
                 </h1>
             </div>
-            <div id="second-row">
-                <form (ngSubmit)="search()"  name="searchForm" [formGroup]="searchForm">
-                    <input formControlName="destination"  id="tf-search" type="text" class="form-control col-3 ml-5 float-left" placeholder="destination">
-                    <input formControlName="checkInDate"  type="date" name="checkInDate" id="df-check-in-date" class="col-2 form-control float-left">
-                    <input formControlName="checkOutDate"  type="date" name="checkOutDate" id="df-check-out-date" class="col-2 form-control float-left">
-                    <input formControlName="numberOfAdults"  type="number" name="adultsCount" id="nf-adults-count" class="form-control col-1 float-left" placeholder="Adults">
-                    <input formControlName="numberOfRooms"  type="number" name="roomsCount" id="nf-rooms-count" class="form-control col-1 float-left" placeholder="Rooms">
+            <div id="second-row" class="container-fluid">
+                <form class="row" (ngSubmit)="search()"  name="searchForm" [formGroup]="searchForm">
+                    <!-- <input formControlName="destination"  id="tf-search" type="text" class="form-control col-3 ml-5 float-left" placeholder="destination"> -->
+                    <sun-travel-input-text
+                        class="col-3 ml-1"
+                        placeholder="destination"
+                        [control] = "searchForm.get('destination')"
+                        type="text"
+                        errorMessage="Invalid destination"
+                        >
+                    </sun-travel-input-text>
+                    <sun-travel-input-text
+                        class="col-2"
+                        placeholder="check-in"
+                        [control] = "searchForm.get('checkInDate')"
+                        type="date"
+                        errorMessage="Invalid date"
+                        >
+                    </sun-travel-input-text>
+                    <sun-travel-input-text
+                        class="col-2"
+                        placeholder="check-out"
+                        [control] = "searchForm.get('checkOutDate')"
+                        type="date"
+                        errorMessage="Invalid date"
+                        >
+                    </sun-travel-input-text>
+                    <sun-travel-input-text
+                        class="col-1"
+                        placeholder="Adults"
+                        [control] = "searchForm.get('numberOfAdults')"
+                        type="number"
+                        errorMessage="Invalid count"
+                        >
+                    </sun-travel-input-text>
+                    <sun-travel-input-text
+                        class="col-1"
+                        placeholder="Rooms"
+                        [control] = "searchForm.get('numberOfRooms')"
+                        type="number"
+                        errorMessage="Invalid count"
+                        >
+                    </sun-travel-input-text>
                     <button id="search-button" class="btn btn-light col-2 ml-2" >
                         Search
                     </button>

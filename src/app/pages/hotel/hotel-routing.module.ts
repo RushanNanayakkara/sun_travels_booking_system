@@ -7,10 +7,6 @@ import { HotelComponent } from './hotel/hotel.component';
 const routes: Routes = [
   {
     path:"",
-    redirectTo: "hotels"
-  },
-  {
-    path:"hotels",
     component:HotelComponent
   },
   {
@@ -19,6 +15,10 @@ const routes: Routes = [
   },
   {
     path:"view",
+    component:HotelViewComponent
+  },
+  {
+    path:"view/:id",
     component:HotelViewComponent
   }
 ];

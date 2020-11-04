@@ -1,9 +1,10 @@
 <mat-toolbar id="title-bar">
     <div id="title" class="noselect  text-bold text-secondary">Sun Travels Hotel Reservation System</div>
-    <app-textfield [type]="'SEARCH'" (event)="onSearchTextUpdate($event)" id="tfCustomerSearch" [width]='200' [height]=2000 type="TEXT"></app-textfield>
-    <button id="label-customer" class="noselect btn btn-secondary text-light p-1">
-        {{activeCustomer.name}}
+    <app-textfield [ngClass]="{'d-none' : UserType==1}" type="SEARCH" placeholder="Contact Number" (event)="onSearchTextUpdate($event)" id="tfCustomerSearch" type="TEXT"></app-textfield>
+    <button [ngClass]="{'d-none' : UserType==1}" id="label-customer" class="noselect btn btn-secondary text-light p-1">
+        {{activeCustomer?activeCustomer.name:"No Customer Selected"}}
     </button>
+    <div id="spacer"  [ngClass]="{'d-none' : UserType==0}" class="col-1 ml-auto mr-0"></div>
     <div id="label-account" class="noselect" mat-icon-button [matMenuTriggerFor]="accountMenu">
         {{loggedInUser.firstName + " " + loggedInUser.lastName}}
     </div>

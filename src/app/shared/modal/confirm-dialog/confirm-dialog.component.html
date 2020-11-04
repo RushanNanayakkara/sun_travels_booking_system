@@ -1,0 +1,11 @@
+<div class="p-2">
+    <h1 class="confirm-modal-title d-block text-center" mat-dialog-title>Confirm Action</h1>
+    <div mat-dialog-content class="text-center">
+        <h4>Are you sure you want to {{data.action}}?</h4>
+        <p class="text-warning confirm-modal-warning">{{data.warningMessage}}</p>
+    </div>
+    <div mat-dialog-actions class="row">
+        <button class="btn btn-secondary col-4 ml-4 mr-auto" [mat-dialog-close]='true' mat-dialog-close>{{data.trueButtonText}}</button>
+        <button class="btn btn-danger col-4 mr-4 ml-auto" [mat-dialog-close]='false' cdkFocusInitial>{{data.falseButtonText}}</button>
+    </div>
+</div>

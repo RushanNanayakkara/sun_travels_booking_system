@@ -23,8 +23,14 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomSearchRecordComponent } from './room-search-record/room-search-record.component';
+import { InputTextComponent } from './inputs/input-text/input-text.component';
+import { ReservationRecordComponent } from './reservation-record/reservation-record.component';
+import { ConfirmDialogComponent } from './modal/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { InputSelectComponent } from './inputs/input-select/input-select.component';
+import { InputTextAreaComponent } from './inputs/input-text-area/input-text-area.component';
 
 const sharedComponents =[
   TextfieldComponent,
@@ -33,13 +39,19 @@ const sharedComponents =[
   UnauthorizedComponent, 
   PageNotFoundComponent, 
   SignInComponent,
-  RoomSearchRecordComponent
+  RoomSearchRecordComponent,
+  InputTextComponent,
+  ReservationRecordComponent,
+  ConfirmDialogComponent,
+  InputSelectComponent,
+  InputTextAreaComponent
 ]
 
 const nativeModules = [
   CommonModule,
   RouterModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  FormsModule
 ]
 
 const externalModules = [
@@ -55,7 +67,8 @@ const externalModules = [
   MatButtonModule,
   MatCardModule,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDialogModule 
 ]
 
 @NgModule({

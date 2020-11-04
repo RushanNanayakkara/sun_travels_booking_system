@@ -1,8 +1,36 @@
-//THEME
+// THEME
 $BASE_COLOR : #ffffff;
 $SECONDARY_COLOR: #9c9c9c;
 $BODY_COLOR_1: #476d7c;
 $BODY_COLOR_2: #77abb7;
 
 $TITLE_BAR_HEIGHT: 7vh;
-$BODY_HEIGHT: 93vh; 
+$BODY_HEIGHT: 93vh;
+
+// TYPOGRAPHY
+.sun-travel-heading{
+    color:#707070;
+}
+
+.sun-travel-sub-heading{
+    color: #9c9c9c;
+}
+
+.sun-travel-input-label{
+    color: #9c9c9c;
+}
+
+// FORM
+.sun-travel-form-section{
+    background-color: #eeeeee;
+    width: 80%;
+    margin: 5px;
+    margin-left: 5vw;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.bold{
+    font-weight: 500;
+}

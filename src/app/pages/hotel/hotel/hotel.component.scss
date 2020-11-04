@@ -1,0 +1,18 @@
+@import "/src/styles/theme.scss";
+
+#heading{
+    font-size: 35px;
+    margin-top: 25px;
+    margin-left: 15px;
+    font-weight: 500   
+}
+
+table {
+    width: 100%;
+}
+
+.table-button{
+    :hover{
+        color: red;
+    }
+}

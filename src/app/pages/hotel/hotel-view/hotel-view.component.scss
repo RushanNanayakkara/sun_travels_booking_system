@@ -1,0 +1,22 @@
+@import "/src/styles/theme.scss";
+
+#heading{
+    font-size: 35px;
+    margin-top: 25px;
+    margin-left: 15px;
+    font-weight: 500   
+}
+
+
+#search-button{
+    margin-right:200px;
+}
+
+#rooms-container{
+    height: 420px;
+    overflow: scroll;
+}
+
+#rooms-container::-webkit-scrollbar {
+    display: none;
+}

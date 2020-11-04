@@ -1,70 +1,79 @@
-<div id="heading" class="text-secondary">
+<div id="heading" class="text-secondary d-block">
     Reservation
 </div>
-<div class="container mt-5">
-    <form class="row" (ngSubmit)="createReservation()"  name="reservationForm" [formGroup]="reservationForm">
-        <div class="col-10 m-0 p-0" id="input-panel">
-            <div formGroupName="reservation">
-                <div class="input-pair row">
-                    <div class=" col-3 input-label-container">
-                        <span class="input-label">Subcontract Id</span>
-                    </div>
-                    <input formControlName="subContractId" class="form-control col-2 float-left" type="number" placeholder="Subcontract Id">
-                    <!-- todo: check if valid subcontract by api call -->
-                    <span class="text-danger form-warning" *ngIf="false">Invalid Id</span> 
+<button class="btn btn-danger mt-3 ml-3 col-1" (click)="goBack()">
+    Back
+</button>
+<div class="container-fluid mt-5">
+    <form class="row" (ngSubmit)="placeReservations()"  name="reservation-form" [formGroup]="reservationForm">
+        <div class="col-10" id="left-section">
+            <!-- CUSTOMER SECTION -->
+            <div class="sun-travel-form-section">
+                <div class="row">
+                    <sun-travel-input-text
+                        class="col-4" 
+                        placeholder="Leave empty for new user"
+                        title="Customer Id"
+                        type="number"
+                        errorMessage="Invalid customerId!"
+                        [control]="reservationForm.controls.customerId"
+                        prependMatIcon="vpn_key"
+                        [isDisabled]="true"
+                    >
+                    </sun-travel-input-text>
+                    <div class="col-1"></div>
+                    <sun-travel-input-text
+                        class="col-6" 
+                        placeholder="Enter customer name here"
+                        title="Customer Name"
+                        type="text"
+                        errorMessage="Invalid name!"
+                        [control]="reservationForm.controls.customerName"
+                        prependMatIcon="person"
+                    >
+                    </sun-travel-input-text> 
                 </div>
-                <div class="input-pair row">
-                    <div class=" col-3 input-label-container">
-                        <span class="input-label">No of rooms</span>
-                    </div>
-                    <input formControlName="noOfRooms" [ngClass]="{'is-invalid': reservationForm.value.reservation.noOfRooms < 1}" class="form-control col-3 float-left" type="number" placeholder="Number of roonms">
-                </div>
-                <div class="input-pair row">
-                    <div class=" col-3 input-label-container">
-                        <span class="input-label">Check in date</span>
-                    </div>
-                    <input formControlName="checkInDate"  [ngClass]="{'is-invalid': validateCheckInDate(reservationForm.value.reservation.checkInDate)}" class="form-control col-3 float-left" type="date" placeholder="Check in date">
-                    <div class=" col-3 input-label-container">
-                        <span class="input-label">Check out date</span>
-                    </div>
-                    <input formControlName="checkOutDate"  [ngClass]="{'is-invalid': !validateCheckOutDate(reservationForm.value.reservation.checkOutDate)}" class="form-control col-3 float-left" type="date" placeholder="Check out date">
-                </div>
-                <div class="input-pair row">
-                    <div class=" col-3 input-label-container">
-                        <span class="input-label">Number of adults</span>
-                    </div>
-                    <input formControlName="noOfAdults" [ngClass]="{'is-invalid': reservationForm.value.reservation.noOfAdults < 1}" class="form-control col-3 float-left" type="number" placeholder="Number of adults">
-                </div>
-                <div class="input-pair row">
-                    <div class=" col-3 input-label-container">
-                        <span class="input-label">Marked up price</span>
-                    </div>
-                    <input formControlName="markedUpPrice" disabled class="form-control col-3 float-left" type="number" placeholder="Marked up price">
+                <div class="row">
+                    <sun-travel-input-text
+                        class="col-4" 
+                        placeholder="Enter customer email here"
+                        title="Customer Email"
+                        type="email"
+                        errorMessage="Invalid Email!"
+                        [control]="reservationForm.controls.customerEmail"
+                        prependMatIcon="mail"
+                    >
+                    </sun-travel-input-text>
+                    <div class="col-1"></div>
+                    <sun-travel-input-text
+                        class="col-4" 
+                        placeholder="Enter customer tel-no here"
+                        title="Customer Phone"
+                        type="text"
+                        errorMessage="Invalid phone number!"
+                        [control]="reservationForm.controls.customerTelNumber"
+                        prependMatIcon="phone"
+                    >
+                    </sun-travel-input-text> 
                 </div>
             </div>
-
-            <div class="input-pair row">
-                <div class=" col-3 input-label-container">
-                    <span class="input-label">Customer Name</span>
-                </div>
-                <input formControlName="customerName" class="form-control col-3 float-left" type="text" placeholder="Customer Name">
-            </div>
-            <div class="input-pair row">
-                <div class=" col-3 input-label-container">
-                    <span class="input-label">Customer tel no</span>
-                </div>
-                <input formControlName="customerTelNumber" class="form-control col-3 float-left" type="text" placeholder="Customer tel no">
-            </div>
-            <div class="input-pair row">
-                <div class=" col-3 input-label-container">
-                    <span class="input-label">Customer email</span>
-                </div>
-                <input formControlName="customerEmail" [ngClass]="{'is-invalid': !validateEmail(reservationForm.value.customerEmail)}" class="form-control col-3 float-left" type="email" placeholder="Customer email">
+            <div id="form-array-container" class="sun-travel-form-section" formArrayName="reservations">
+                <sun-travel-reservation-record 
+                    *ngFor="let reservation of reservationForms.controls; let i=index" class="bg-dark text-light"
+                    [formGroupName]="i" 
+                    [reservation]="reservation"
+                    [index]=i
+                    (remove)="removeReservation($event)">
+                </sun-travel-reservation-record>
             </div>
         </div>
-        <div class="col-2" id="button-panel">
-            <button class="btn primary-background">Add reservation</button>
-            <button type="button" (click)="cancel()" class="btn secondary-background">Cancel</button>
+        <div class="col-2 " id="right-section">
+            <button class="btn col-9 primary-background text-light d-block mt-1">
+                Finalize Reservation
+            </button>
+            <button type="button" class="btn col-9 secondary-background text-light d-block mt-2">
+                Cancel Reservation
+            </button>
         </div>
     </form>
 </div>

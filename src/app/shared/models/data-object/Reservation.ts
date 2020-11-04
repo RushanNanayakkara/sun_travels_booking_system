@@ -1,6 +1,6 @@
 import { Time } from '@angular/common';
 
-export interface reservation{
+export interface Reservation{
     reservationId:Number;
     uuid:String;
     customerId:Number;

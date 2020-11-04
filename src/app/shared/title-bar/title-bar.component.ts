@@ -1,24 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Customer } from 'src/app/shared/models/data-object/Customer';
 import { User } from 'src/app/shared/models/data-object/User';
 import { CustomerService } from 'src/app/core/customer/customer.service';
 import { UserService } from 'src/app/core/user/user.service';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-title-bar',
   templateUrl: './title-bar.component.html',
   styleUrls: ['./title-bar.component.scss']
 })
-export class TitleBarComponent implements OnInit {
+export class TitleBarComponent implements OnInit,OnDestroy {
 
+  subscriptions:Subscription[]=[];
   loggedInUser:User = null;
   activeCustomer:Customer = null;
   telNumber:String = null;
 
   constructor(
     private authService: AuthenticationService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private _snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -32,18 +36,37 @@ export class TitleBarComponent implements OnInit {
     defaultCustomer.name = "No Customer Selected";
     this.activeCustomer = defaultCustomer;
   }
-
-  getCustomer(tel:String):void{
-    this.customerService.getCustomer(tel).subscribe(customer=>this.activeCustomer = customer);
+  
+  ngOnDestroy(){
+    this.subscriptions.forEach(sub=>sub.unsubscribe());
   }
 
-  onSearchTextUpdate(event:String){
-    this.customerService.getCustomer(event).subscribe(customer=>this.activeCustomer=customer);
+  onSearchTextUpdate(tel:string):void{
+    this.subscriptions.push(
+      this.customerService.getCustomer(tel).subscribe(
+        (customer:Customer)=>{
+          this.activeCustomer = customer;
+          if(customer===null){
+            this._snackBar.open("Customer not found!","close",{
+              duration:4000,
+              panelClass:['error-snackbar'],
+              verticalPosition: 'bottom',
+              horizontalPosition:'end'
+            })
+          }else{
+            this.customerService.setActiveCustomer(customer);
+          }
+        }
+      )
+    );
   }
 
   signOut(){
     this.authService.signOut();
   }
 
+  get UserType(){
+    return this.authService.getLoggedInUser().tenantId;
+  }
 
 }

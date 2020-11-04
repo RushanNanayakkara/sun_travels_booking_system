@@ -14,11 +14,7 @@ export class RoomSearchRecordComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.record.roomType = {
-      name:"Some room type",
-    description:`this is a dummy description.this is a dummy description.this is a dummy description.this is a dummy description.this is a dummy 
-             description.this is a dummy description.this is a dummy description.this is a dummy description.`
-    }
+    console.log(this.record)
   }
 
   addReservation(){

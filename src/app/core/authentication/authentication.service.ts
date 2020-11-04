@@ -21,11 +21,11 @@ export class AuthenticationService {
       return this.http.post<TokenResponse>(BASE_URL+this.authUrl, {email,password}, {observe:'body',responseType:'json'});
   }
 
-  getJwt():string{
+  getToken():string{
     return localStorage.getItem('jwt');
   }
 
-  setJwt(token:string):void{
+  setToken(token:string):void{
     localStorage.setItem('jwt',token);
   }
 

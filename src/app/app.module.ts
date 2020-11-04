@@ -11,7 +11,9 @@ import { SharedModule } from "./shared/shared.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import { TokenInterceptorService } from './core/token-interceptor/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,16 @@ import { HttpClientModule } from '@angular/common/http';
     PagesModule,
     SharedModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi   : true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

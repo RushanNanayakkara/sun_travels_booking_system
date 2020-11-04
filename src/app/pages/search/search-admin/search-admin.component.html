@@ -1,1 +1,35 @@
-<p>search-admin works!</p>
+<div id="main-container">
+    <div id="center-container">
+        <div id="first-row">
+            <h1 id="title" class="text-secondary">
+               Admin Search
+            </h1>
+        </div>
+        <div id="second-row" class="container-fluid">
+            <form class="row" (ngSubmit)="search()"  name="searchForm" [formGroup]="searchForm">
+                <!-- <input formControlName="destination"  id="tf-search" type="text" class="form-control col-3 ml-5 float-left" placeholder="destination"> -->
+                <div class="col-1"></div>
+                <sun-travel-input-text
+                    class="col-5 ml-1"
+                    placeholder="Key word"
+                    [control] = "searchForm.get('keyword')"
+                    type="text"
+                    errorMessage="Invalid destination"
+                    >
+                </sun-travel-input-text>
+                <sun-travel-input-select
+                    class="col-3"
+                    placeholder="check-in"
+                    [control] = "searchForm.get('searchType')"
+                    type="date"
+                    errorMessage="Invalid date"
+                    [options]="types"
+                    >
+                </sun-travel-input-select>
+                <button id="search-button" class="btn btn-light col-2 ml-2" >
+                    Search
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

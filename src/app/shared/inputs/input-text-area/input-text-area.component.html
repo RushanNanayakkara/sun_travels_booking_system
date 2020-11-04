@@ -1,0 +1,23 @@
+<div class="p-1 mt-1 mb-1">
+    <label 
+        id="input-title" 
+        for="input-container" 
+        class="sun-travel-input-label"
+        *ngIf="title!=null">
+        {{title}}
+    </label>
+    <div id="input-container" class="input-group">
+        <textarea
+            class="form-control col-12 d-block"
+            placeholder={{placeholder}}
+            [formControl] = "control"
+            [ngClass] = "{'is-invalid':getStatus()}"
+            [attr.disabled]="isDisabled ? '' : null"
+            [rows]= "rowsInput"
+            >
+        </textarea>
+        <div class="invalid-tooltip">
+            {{errorMessage}}
+        </div>
+    </div>
+</div>

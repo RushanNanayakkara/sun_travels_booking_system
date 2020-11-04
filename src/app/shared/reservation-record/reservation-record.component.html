@@ -1,0 +1,44 @@
+<div id="result-container" class="mt-4">
+    <div id="left-panel">
+        <div id="hotel-name" class="text-dark">
+            {{hotelName}}
+        </div>
+        <div id="room-type-container">
+            <div id="room-type-header" class="text-dark">
+                {{roomTypeName}}
+            </div>
+        </div>
+        <div class="text-secondary">
+            <div class="bottom-value">Marked Up Price: ${{reservation.value.markedUpPrice}}  </div>
+            <div class="bottom-value">Check in : {{reservation.value.checkInDate}} </div>
+            <div class="bottom-value">Check out : {{reservation.value.checkOutDate}} </div>
+        </div>
+        <div class="row">
+            <sun-travel-input-text
+                class="col-3" 
+                placeholder=""
+                title="Adults"
+                type="number"
+                errorMessage="Invalid count!"
+                [control]="reservation.get('noOfAdults')"
+                prependMatIcon="person"
+            >
+            </sun-travel-input-text> 
+            <sun-travel-input-text
+                class="col-3" 
+                placeholder=""
+                title="Room Count"
+                type="number"
+                errorMessage="Invalid count!"
+                [control]="reservation.get('noOfRooms')"
+                prependMatIcon="hotel"
+            >
+            </sun-travel-input-text> 
+        </div>
+    </div>
+    <div id="right-panel">
+        <button type="button" (click)="onRemoveClicked()" id="remove-button" class="btn col-11 mt-1 d-block" >
+            Remove
+        </button>
+    </div>
+</div>  

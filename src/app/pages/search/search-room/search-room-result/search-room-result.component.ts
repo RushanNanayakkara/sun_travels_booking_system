@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { SearchResponse } from 'src/app/shared/models/responses/SearchResponse';
   templateUrl: './search-room-result.component.html',
   styleUrls: ['./search-room-result.component.scss']
 })
-export class SearchRoomResultComponent implements OnInit {
+export class SearchRoomResultComponent implements OnInit,OnDestroy {
 
   searchForm:FormGroup;
   filterPanelOpenState:Boolean = false;
@@ -33,27 +33,57 @@ export class SearchRoomResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchResults = history.state.response;
+    let searchQuery = history.state.searchQuery;
     this.searchForm = new FormGroup(
       {
         destination: new FormControl("",Validators.required),
         checkInDate: new FormControl(null, Validators.required),
         checkOutDate: new FormControl(null, Validators.required),
-        numberOfAdults: new FormControl(null, Validators.required),
-        numberOfRooms: new FormControl(null, Validators.required),
+        numberOfAdults: new FormControl(null, [Validators.required,Validators.min(1)]),
+        numberOfRooms: new FormControl(null, [Validators.required,Validators.min(1)]),
         keyLocationList: new FormControl([]),
         hotelNameList: new FormControl([]),
         maxPrice: new FormControl(null,Validators.pattern("^[0-9]*$")),
         minPrice: new FormControl(null,Validators.pattern("^[0-9]*$"))
-      }
+      },{validators:Validators.compose([this.checkInOutDate,this.adultAndRoomCountValidator])}
     )
+    if(searchQuery) this.searchForm.patchValue(searchQuery);
   }
 
   ngOnDestroy(){
     this.subscriptions.forEach(subscription=>subscription.unsubscribe());
   }
+  
+  // VALIDATORS
+  checkInOutDate(AC: AbstractControl){
+    const dateFrom = new Date(AC.get('checkInDate').value) ;
+    const dateTo = new Date(AC.get('checkOutDate').value);
+
+     if(dateTo?.getTime() > dateFrom?.getTime())
+     {
+         return null;
+     }
+
+     AC.get('checkOutDate').setErrors({BeforeCheckIn:true});
+     
+  }
+
+  adultAndRoomCountValidator(AC: AbstractControl){
+    const numOfAdults = AC.get('numberOfAdults').value ;
+    const numOfRooms = AC.get('numberOfRooms').value;
+
+     if(numOfAdults>=numOfRooms)
+     {
+         return null;
+     }
+
+     AC.get('numberOfRooms').setErrors({MoreThanAdults:true});
+     
+  }
 
   search(){
     this.refreshFilterOptions();
+    
     console.log(this.searchForm.value);
     if(this.searchForm.invalid){
         this._snackBar.open("Invalied form data!","close",{
@@ -65,7 +95,7 @@ export class SearchRoomResultComponent implements OnInit {
         return;
       }
       this.subscriptions.push(
-        this.searchService.searchWithoutFilter(this.searchForm.value)
+        this.searchService.searchWithFilter(this.searchForm.value)
         .subscribe(response=>{
           this.searchResults =response;
         })
@@ -73,7 +103,7 @@ export class SearchRoomResultComponent implements OnInit {
   }
 
   addFilters(){
-    let klv = this.keyLocationFilterInput;
+    const klv = this.keyLocationFilterInput;
     if(
         klv!=null
         && 
@@ -84,7 +114,7 @@ export class SearchRoomResultComponent implements OnInit {
       this.searchForm.value.keyLocationList.push(klv);
     }
 
-    let hni = this.hotelNameInput;
+    const hni = this.hotelNameInput;
     if(
         hni!=null
         && 
@@ -97,7 +127,6 @@ export class SearchRoomResultComponent implements OnInit {
 
 
     this.refreshFilterOptions();
-    console.log(this.searchForm.value.keyLocationList)
   }
 
   refreshFilterOptions(){

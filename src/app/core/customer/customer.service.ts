@@ -1,5 +1,7 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { BASE_URL } from 'src/app/constants/url';
 import { Customer } from "../../shared/models/data-object/Customer";
 
 @Injectable({
@@ -7,22 +9,22 @@ import { Customer } from "../../shared/models/data-object/Customer";
 })
 export class CustomerService {
 
-  private customer:Customer = {
-    customerId  : -1,
-    name  : "New Customer",
-    email : "",
-    contactNumber : ""
+  getCustomerUrl:string = "/api/v1/customer/get-by-contact"
+  activeCustomer:Customer;
+
+  constructor(private http:HttpClient) { }
+
+  getCustomer(tel: string){
+    const options = { params: new HttpParams().set('tel', tel) };
+    return this.http.get<Customer>(BASE_URL+this.getCustomerUrl, options);
   }
 
-  constructor() { }
+  getActiveCustomer(){
+    return this.activeCustomer;
+  }
 
-
-  //todo: complete function
-  getCustomer(tel: String): Observable<Customer>{
-    if(this.customer.contactNumber===tel)
-      return of(this.customer);
-    else
-      return of(this.customer);
+  setActiveCustomer(customer:Customer){
+    this.activeCustomer = customer;
   }
 
 }
