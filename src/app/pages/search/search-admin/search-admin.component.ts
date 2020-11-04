@@ -53,7 +53,7 @@ export class SearchAdminComponent implements OnInit,OnDestroy {
       return;
     }
     if(this.searchForm.value.searchType==0){
-      this.router.navigate(['/hotel/view',{id:this.searchForm.value.keyword}])
+      this.router.navigate(['/hotel/view'],{queryParams:{id:this.searchForm.value.keyword}});
     }
   }
 }

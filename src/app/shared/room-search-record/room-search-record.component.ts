@@ -14,7 +14,6 @@ export class RoomSearchRecordComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    console.log(this.record)
   }
 
   addReservation(){

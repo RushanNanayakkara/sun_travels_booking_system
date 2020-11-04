@@ -34,6 +34,7 @@ export class HotelViewComponent implements OnInit, OnDestroy {
       params => {
         console.log(params);
         const hotelId = params.get("id");
+        console.log(hotelId);
         this.subscriptions.push(
           this.hotelService.getHotelDetail(Number(hotelId)).subscribe(
             (response:HotelDetailResponse)=>{
@@ -41,7 +42,7 @@ export class HotelViewComponent implements OnInit, OnDestroy {
             },
             (error:HttpErrorResponse)=>{
               console.log(error);
-              this._snackBar.open("Operation failed!","close",{
+              this._snackBar.open("Could'nt find hotel!","close",{
                 duration:4000,
                 panelClass:['error-snackbar'],
                 verticalPosition: 'bottom',
@@ -87,6 +88,7 @@ export class HotelViewComponent implements OnInit, OnDestroy {
           this.populateWithHotelDetails(response);
         },
         (error:HttpErrorResponse) => {
+          console.log(error);
           this._snackBar.open("Operation failed!","close",{
             duration:4000,
             panelClass:['error-snackbar'],

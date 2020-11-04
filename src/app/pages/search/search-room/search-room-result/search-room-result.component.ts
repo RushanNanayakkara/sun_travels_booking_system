@@ -23,6 +23,9 @@ export class SearchRoomResultComponent implements OnInit,OnDestroy {
   minPrice:Number;
   maxPrice:Number;
 
+  hotelNameSet:Set<string>;
+  keyLocationSet:Set<string>;
+
   searchResults: SearchResponse[] = [];
 
   constructor(
@@ -32,6 +35,8 @@ export class SearchRoomResultComponent implements OnInit,OnDestroy {
     ) { }
 
   ngOnInit(): void {
+    this.hotelNameSet = new Set();
+    this.keyLocationSet = new Set();
     this.searchResults = history.state.response;
     let searchQuery = history.state.searchQuery;
     this.searchForm = new FormGroup(
@@ -82,9 +87,7 @@ export class SearchRoomResultComponent implements OnInit,OnDestroy {
   }
 
   search(){
-    this.refreshFilterOptions();
     
-    console.log(this.searchForm.value);
     if(this.searchForm.invalid){
         this._snackBar.open("Invalied form data!","close",{
           duration:4000,
@@ -103,30 +106,16 @@ export class SearchRoomResultComponent implements OnInit,OnDestroy {
   }
 
   addFilters(){
-    const klv = this.keyLocationFilterInput;
-    if(
-        klv!=null
-        && 
-        klv.trim()!=""
-        &&
-        this.searchForm.value.keyLocationList.indexOf(klv)===-1
-      ){
-      this.searchForm.value.keyLocationList.push(klv);
-    }
-
-    const hni = this.hotelNameInput;
-    if(
-        hni!=null
-        && 
-        hni.trim()!=""
-        &&
-        this.searchForm.value.hotelNameList.indexOf(hni)===-1
-      ){
-      this.searchForm.value.hotelNameList.push(hni);
-    }
-
-
+    this.hotelNameSet.add(this.hotelNameInput);
+    this.keyLocationSet.add(this.keyLocationFilterInput);
+    if(this.hotelNameSet.size>0)
+      this.searchForm.get('keyLocationList').setValue(Array.from(this.keyLocationSet.values()));
+    if(this.hotelNameSet.size>0)
+      this.searchForm.get('hotelNameList').setValue(Array.from(this.hotelNameSet.values()));
+    this.searchForm.get('minPrice').setValue(this.minPrice);
+    this.searchForm.get('maxPrice').setValue(this.maxPrice);  
     this.refreshFilterOptions();
+    this.search();
   }
 
   refreshFilterOptions(){
