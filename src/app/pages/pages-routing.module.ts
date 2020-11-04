@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuard } from '../guard/admin-guard/admin.guard';
+import { EmployeeGuard } from '../guard/employee-guard/employee.guard';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -9,16 +11,19 @@ const routes: Routes = [
     children:[
       {
         path:"hotel",
+        canActivate:[AdminGuard],
         loadChildren:() =>
           import('./hotel/hotel.module').then((m) => m.HotelModule),
       },
       {
         path:"contract",
+        canActivate:[AdminGuard],
         loadChildren:() =>
           import('./contract/contract.module').then((m) => m.ContractModule),
       },
       {
         path:"employee",
+        canActivate:[AdminGuard],
         loadChildren:() =>
           import('./employee/employee.module').then((m) => m.EmployeeModule),
       },
@@ -39,6 +44,7 @@ const routes: Routes = [
       },
       {
         path:"reservation",
+        canActivate:[EmployeeGuard],
         loadChildren:() =>
           import('./reservation/reservation.module').then((m) => m.ReservationModule),
       }
